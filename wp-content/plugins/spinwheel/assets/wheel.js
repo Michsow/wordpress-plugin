@@ -17,14 +17,15 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
-            let crateNames = data.map(crate => crate.name);
+            // store full objects (name + image)
+            prizes = data.slice(0, max);
 
-            if (crateNames.length < min) {
+            // check correct property
+            if (prizes.length < min) {
                 $("#result").text(`API returned too few crates.`);
                 return;
             }
 
-            prizes = crateNames.slice(0, max);
             $("#spin-btn").prop("disabled", false);
             $("#result").text(`Loaded ${prizes.length} crates!`);
         });
@@ -44,29 +45,35 @@ jQuery(document).ready(function ($) {
         const track = $("#case-track");
         track.empty();
 
-        // generate many random items (CSGO opening style)
+        // generate CSGO style sequence
         let sequence = [];
         for (let i = 0; i < 40; i++) {
             let item = prizes[Math.floor(Math.random() * prizes.length)];
-            sequence.push(item);
+            sequence.push({
+                name: item.name,
+                image: item.image ? item.image : null
+            });
         }
 
-        // append elements
-        sequence.forEach(name => {
-            track.append(`<div class="case-item">${name}</div>`);
+        // append items
+        sequence.forEach(item => {
+            track.append(`
+                <div class="case-item">
+                    ${item.image ? `<img src="${item.image}" class="case-img"/>` : ""}
+                    <div class="case-name">${item.name}</div>
+                </div>
+            `);
         });
 
-        // choose the WINNING item
-        const winningIndex = 25; // center stop
-        const winningItem = sequence[winningIndex];
+        // picker
+        const winningIndex = 25;
+        const winningItem = sequence[winningIndex].name;
 
         const itemWidth = 120;
         const stopPosition = -(winningIndex * itemWidth) + (600 / 2 - itemWidth / 2);
 
-        // animate
         track.css("transform", `translateX(${stopPosition}px)`);
 
-        // result after animation
         setTimeout(() => {
             $("#result").text("You won: " + winningItem);
             spinning = false;

@@ -36,15 +36,30 @@
     width: max-content;  /* <-- REQUIRED */
 }
 
-
 .case-item {
     min-width: 120px;
     height: 120px;
-    line-height: 120px;
     border-right: 1px solid #222;
     background: #1c1c1c;
     color: white;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.case-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+
+.case-name {
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
 }
 
 #pointer {
