@@ -65,9 +65,9 @@ jQuery(document).ready(function ($) {
             `);
         });
 
-        // picker
+                // picker
         const winningIndex = 25;
-        const winningItem = sequence[winningIndex].name;
+        const winningItem = sequence[winningIndex];
 
         const itemWidth = 120;
         const stopPosition = -(winningIndex * itemWidth) + (600 / 2 - itemWidth / 2);
@@ -75,8 +75,15 @@ jQuery(document).ready(function ($) {
         track.css("transform", `translateX(${stopPosition}px)`);
 
         setTimeout(() => {
-            $("#result").text("You won: " + winningItem);
+            $("#result").html(`
+                <div class="won-item">
+                    ${winningItem.image ? `<img src="${winningItem.image}" class="won-img" />` : ""}
+                    <div>You won: ${winningItem.name}</div>
+                </div>
+            `);
+
             spinning = false;
         }, 3000);
+
     });
 });
