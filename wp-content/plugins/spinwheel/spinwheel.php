@@ -75,14 +75,14 @@ function spin_wheel_settings_page() { ?>
                                style="width: 400px;">
                     </td>
                 </tr>
-
+            
             </table>
 
             <?php submit_button(); ?>
         </form>
     </div>
 <?php }
-
+/* API used: https://raw.githubusercontent.com/ByMykel/CSGO-API/main/public/api/en/crates.json */
 /* -----------------------------------------
  * 4. FRONT-END ASSETS + LOCALIZED SETTINGS
  * ----------------------------------------- */
