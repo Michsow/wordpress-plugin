@@ -114,8 +114,14 @@ add_action('wp_enqueue_scripts', function () {
 add_shortcode('spin_wheel', function () {
     return '
     <div id="wheel-container">
-        <div id="wheel"></div>
         <button id="spin-btn">SPIN</button>
         <div id="result"></div>
+
+        <div id="case-container">
+            <div id="case-window">
+                <div id="case-track"></div>
+                <div id="pointer"></div>
+            </div>
+        </div>
     </div>';
 });

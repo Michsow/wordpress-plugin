@@ -17,7 +17,7 @@ jQuery(document).ready(function ($) {
                 return;
             }
 
-            // store full objects (name + image)
+            // store full objects inside javascript memory (name + image)
             prizes = data.slice(0, max);
 
             // check correct property
